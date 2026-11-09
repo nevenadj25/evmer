@@ -1,0 +1,51 @@
+spring:
+  web:
+    resources:
+      static-locations: file:../../evmer-webapp/dist/
+  thymeleaf:
+    prefix: file:../../evmer-webapp/dist/
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 25MB
+
+  application:
+    name: evmer
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: 3600000
+  refresh-expiration: 604800000
+app:
+  upload:
+    directory: ../files/equipment_images
+  mailing:
+    enabled: true
+    url: ${MAILING_URL:http://localhost:8000}
+custom-props:
+  allowed-origins:
+    - "http://localhost:5173"
+    - "http://localhost:8080"
+    - "https://staging.impt.rs"
+
+#logging:
+#  level:
+#   root: trace
